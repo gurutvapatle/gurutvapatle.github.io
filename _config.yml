@@ -1,0 +1,17 @@
+title: "Gurutva Patle"
+name: "Gurutva Patle"
+description: "PhD Researcher at IISc Bangalore | Computer Vision & Graphics"
+url: "https://gurutvapatle.github.io"
+
+nav:
+  - title: "Home"
+    url: /
+  - title: "Projects"
+    url: /projects/
+
+author:
+  name: "Gurutva Patle"
+  email: "gurutva@iisc.ac.in"
+  github: "gurutvapatle"
+  scholar: "https://scholar.google.com/"
+  cv: "/assets/CV_GurutvaPatle.pdf"
