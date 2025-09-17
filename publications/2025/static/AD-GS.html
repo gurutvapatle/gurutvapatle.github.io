@@ -1,0 +1,440 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AD-GS: Alternating Densification for Sparse-Input 3D Gaussian Splatting</title>
+    <link rel="stylesheet" href="./AD-GS_videos_files/w3.css">
+    <link rel="stylesheet" href="./AD-GS_videos_files/common.css">
+    <link rel="stylesheet" href="./AD-GS_videos_files/navigation.css">
+    <script src="./AD-GS_videos_files/a076d05399.js"></script>
+    <link rel="stylesheet" href="./AD-GS_videos_files/academicons.min.css">
+    <script src="./AD-GS_videos_files/navigation.js"></script>
+    <link rel="stylesheet" href="./AD-GS_videos_files/adgs.css">
+    <meta name="description" content="Learning to Move: Moving Gaussians for Dynamic Novel View Synthesis">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="w3-main">
+    <div class="w3-container" id="title-panel">
+        <h1 class="page-title">AD-GS: Alternating Densification for Sparse-Input 3D Gaussian Splatting</h1>
+        <p class="page-subtitle">SIGGRAPH ASIA 2025</p>
+    </div>
+    <div class="w3-container" style="width: 90%; margin-left: 5%; margin-top: 50px">
+        <div class="w3-container" id="abstract">
+                    <h2><u>Abstract</u></h2>
+                    <p>
+                         3D Gaussian Splatting (3DGS) has shown impressive results in real-time novel view synthesis. However, it often struggles under sparse-view settings, producing undesirable artifacts such as floaters, inaccurate geometry, and overfitting due to limited observations. We find that a key contributing factor is uncontrolled densification, where adding Gaussian primitives rapidly without guidance can harm geometry and cause artifacts.
+We propose AD-GS, a novel alternating densification framework that interleaves high and low densification phases. During high densification, the model densifies aggressively, followed by photometric loss based training to capture fine-grained Scene: details. Low densification then primarily involves aggressive opacity pruning of Gaussians followed by regularizing their geometry through pseudo-view consistency and edge-aware depth smoothness. This alternating approach helps reduce overfitting by carefully controlling model capacity growth while progressively refining the Scene: representation.
+Extensive experiments on challenging datasets demonstrate that AD-GS significantly improves rendering quality and geometric consistency compared to existing methods. 
+                    </p>
+        </div>
+        <div class="w3-container" id="video-comparisons">
+            <h2><u>Sample comparison videos</u></h2>
+            <h4>Play the videos in fullscreen mode for the best view</h4>
+            <div class="w3-container" id="video-comparisons-floaters">
+
+             <figure style="width: 100%">
+                <video id="video-33" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/3dgs_vs_ADGS_Barn_3views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: barn | Views: 3views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+
+            <figure style="width: 100%">
+                <video id="video-16" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_CORGS_flower.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: flower | Views: 3views | Method: CoR-GS vs AD-GS</figcaption>
+            </figure>
+
+            <figure style="width: 100%">
+                <video id="video-20" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_DropGS_fortress.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: fortress | Views: 3views | Method: DropGaussian vs AD-GS</figcaption>
+            </figure>
+
+            <figure style="width: 100%">
+                <video id="video-7" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_FSGS_kitchen.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Mip-NeRF360 | Scene: kitchen | Views: 12views | Method: FSGS vs AD-GS</figcaption>
+            </figure>
+
+            <figure style="width: 100%">
+                <video id="video-13" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_3DGS_horns.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: horns | Views: 3views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-4" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_DropGS_counter.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Mip-NeRF360 | Scene: counter | Views: 12views | Method: DropGaussian vs AD-GS</figcaption>
+            </figure>
+
+            <figure style="width: 100%">
+                <video id="video-0" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_3DGS_bonsai.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Mip-NeRF360 | Scene: bonsai | Views: 12views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+             <figure style="width: 100%">
+                <video id="video-44" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/corgs_vs_ADGS_Ballroom_3views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: ballroom | Views: 3views | Method: CoR-GS vs AD-GS</figcaption>
+            </figure>
+
+            <figure style="width: 100%">
+                <video id="video-52" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/dropgs_vs_ADGS_Museum_3views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: museum | Views: 3views | Method: DropGaussian vs AD-GS</figcaption>
+            </figure>
+
+            <figure style="width: 100%">
+                <video id="video-54" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/fsgs_vs_ADGS_Barn_6views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: barn | Views: 6views | Method: FSGS vs AD-GS</figcaption>
+            </figure>
+
+        
+            <figure style="width: 100%">
+                <video id="video-5" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_DropGS_kitchen.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Mip-NeRF360 | Scene: kitchen | Views: 12views | Method: DropGaussian vs AD-GS</figcaption>
+            </figure>
+
+
+        
+
+
+
+
+
+
+            <figure style="width: 100%">
+                <video id="video-1" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_3DGS_counter.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Mip-NeRF360 | Scene: counter | Views: 12views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-21" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_DropGS_horns.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: horns | Views: 3views | Method: DropGaussian vs AD-GS</figcaption>
+            </figure>
+
+            <figure style="width: 100%">
+                <video id="video-2" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_3DGS_kitchen.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Mip-NeRF360 | Scene: kitchen | Views: 12views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-6" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_FSGS_counter.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Mip-NeRF360 | Scene: counter | Views: 12views | Method: FSGS vs AD-GS</figcaption>
+            </figure>
+
+
+             <figure style="width: 100%">
+                <video id="video-3" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_3DGS_room.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Mip-NeRF360 | Scene: room | Views: 12views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-34" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/3dgs_vs_ADGS_Barn_6views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: barn | Views: 6views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+             <figure style="width: 100%">
+                <video id="video-46" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/corgs_vs_ADGS_Church_6views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: church | Views: 6views | Method: CoR-GS vs AD-GS</figcaption>
+            </figure>
+
+
+
+
+             <figure style="width: 100%">
+                <video id="video-38" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/3dgs_vs_ADGS_Family_9views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: family | Views: 9views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-40" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/3dgs_vs_ADGS_Francis_9views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: francis | Views: 9views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+        
+            <figure style="width: 100%">
+                <video id="video-10" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/24_views_gt_vs_DropGS_counter.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Mip-NeRF360 | Scene: counter | Views: 24views | Method: DropGaussian vs AD-GS</figcaption>
+            </figure>
+
+            <figure style="width: 100%">
+                <video id="video-9" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/24_views_gt_vs_3DGS_kitchen.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Mip-NeRF360 | Scene: kitchen | Views: 24views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-14" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_3DGS_trex.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: trex | Views: 3views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+            <figure style="width: 100%">
+                <video id="video-49" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/corgs_vs_ADGS_Museum_3views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: museum | Views: 3views | Method: CoR-GS vs AD-GS</figcaption>
+            </figure>
+
+        
+             <figure style="width: 100%">
+                <video id="video-24" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_FSGS_flower.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: flower | Views: 3views | Method: FSGS vs AD-GS</figcaption>
+            </figure>
+
+             <figure style="width: 100%">
+                <video id="video-15" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_CORGS_fern.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: fern | Views: 3views | Method: CoR-GS vs AD-GS</figcaption>
+            </figure>
+
+             <figure style="width: 100%">
+                <video id="video-35" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/3dgs_vs_ADGS_Church_6views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: church | Views: 6views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-12" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_3DGS_fortress.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: fortress | Views: 3views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+        
+
+             <figure style="width: 100%">
+                <video id="video-53" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/fsgs_vs_ADGS_Ballroom_3views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: ballroom | Views: 3views | Method: FSGS vs AD-GS</figcaption>
+            </figure>
+
+
+             <figure style="width: 100%">
+                <video id="video-18" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_CORGS_trex.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: trex | Views: 3views | Method: CoR-GS vs AD-GS</figcaption>
+            </figure>
+
+            <figure style="width: 100%">
+                <video id="video-32" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/3dgs_vs_ADGS_Ballroom_3views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: ballroom | Views: 3views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+        
+            <figure style="width: 100%">
+                <video id="video-26" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_FSGS_trex.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: trex | Views: 3views | Method: FSGS vs AD-GS</figcaption>
+            </figure>
+
+        
+
+            <figure style="width: 100%">
+                <video id="video-37" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/3dgs_vs_ADGS_Family_6views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: family | Views: 6views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+        
+             <figure style="width: 100%">
+                <video id="video-11" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_3DGS_fern.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: fern | Views: 3views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+             <figure style="width: 100%">
+                <video id="video-47" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/corgs_vs_ADGS_Family_6views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: family | Views: 6views | Method: CoR-GS vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-25" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/gt_vs_FSGS_horns.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: horns | Views: 3views | Method: FSGS vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-39" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/3dgs_vs_ADGS_Francis_6views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: francis | Views: 6views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-41" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/3dgs_vs_ADGS_Horse_6views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: horse | Views: 6views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+        
+
+
+            <figure style="width: 100%">
+                <video id="video-43" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/3dgs_vs_ADGS_Museum_6views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: museum | Views: 6views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+        
+
+            <figure style="width: 100%">
+                <video id="video-27" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/6views_gt_vs_3DGS_fortress.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: LLFF | Scene: fortress | Views: 6views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-48" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/corgs_vs_ADGS_Ignatius_6views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: ignatius | Views: 6views | Method: CoR-GS vs AD-GS</figcaption>
+            </figure>
+        
+
+
+
+            <figure style="width: 100%">
+                <video id="video-50" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/dropgs_vs_ADGS_Church_6views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: church | Views: 6views | Method: DropGaussian vs AD-GS</figcaption>
+            </figure>
+
+
+            <figure style="width: 100%">
+                <video id="video-42" class="video-comparisons-llff" muted controls loop>
+                    <source src="videos/3dgs_vs_ADGS_Horse_9views.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">Dataset: Tanks & Temples | Scene: horse | Views: 9views | Method: 3DGS vs AD-GS</figcaption>
+            </figure>
+                
+<!--             <figure style="width: 100%">-->
+<!--                <video id="video-36" class="video-comparisons-llff" muted controls loop>-->
+<!--                    <source src="videos/3dgs_vs_ADGS_Church_9views.mp4" type="video/mp4">-->
+<!--                    Your browser does not support the video tag.-->
+<!--                </video>-->
+<!--                <figcaption class="caption">Dataset: Tanks & Temples | Scene: church | Views: 9views | Method: 3DGS vs AD-GS</figcaption>-->
+<!--            </figure>-->
+
+
+
+            </div>
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+    </div>
+</div>
+</body>
+</html>
