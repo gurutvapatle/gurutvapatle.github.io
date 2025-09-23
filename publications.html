@@ -10,11 +10,11 @@
   <h2>2025</h2>
   <ul>
     <li>
-      <a href="/publications/2025/ADGS.html">
+      <a href="./publications/2025/ADGS.html">
         AD-GS: Alternating Densification for Sparse-Input 3D Gaussian Splatting
       </a><br>
       Authors: Gurutva Patle | Nilay Girgaonkar | Nagabhushan Somraj | Rajiv Soundararajan <br>
-      <a href="/publications/2025/ADGS.html">🐙 Project Page</a>
+      <a href="./publications/2025/ADGS.html">🐙 Project Page</a>
       <p><b>Abstract:</b> 3D Gaussian Splatting (3DGS) has shown impressive results in real-time novel view synthesis. However, it often struggles under sparse-view settings, producing undesirable artifacts such as floaters, inaccurate geometry, and overfitting due to limited observations. We find that a key contributing factor is uncontrolled densification, where adding Gaussian primitives rapidly without guidance can harm geometry and cause artifacts.
 We propose <b>AD-GS</b>, a novel alternating densification framework that interleaves high and low densification phases. During high densification, the model densifies aggressively, followed by photometric loss based training to capture fine-grained scene details. Low densification then primarily involves aggressive opacity pruning of Gaussians followed by regularizing their geometry through pseudo-view consistency and edge-aware depth smoothness. This alternating approach helps reduce overfitting by carefully controlling model capacity growth while progressively refining the scene representation.
 Extensive experiments on challenging datasets demonstrate that AD-GS significantly improves rendering quality and geometric consistency compared to existing methods. 
