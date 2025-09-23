@@ -8,10 +8,7 @@ body {
     color: #000;
 }
 
-.link-block a {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
+
 
 .dnerf {
   font-variant: small-caps;
@@ -157,4 +154,19 @@ body {
 #interpolation-image-wrapper {
   margin-bottom: 1rem;
   text-align: center;
+}
+
+.conference-info {
+  display: inline-block;
+  background: linear-gradient(135deg, #cccccc 0%, #262626 60%);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
