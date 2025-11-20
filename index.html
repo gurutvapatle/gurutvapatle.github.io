@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
 
+
     <style>
 
         /* ============================================================
@@ -175,6 +176,53 @@
             color: white;
             text-decoration: none;
         }
+
+        /* ============================================================
+   MOBILE RESPONSIVE FIXES
+============================================================ */
+@media (max-width: 768px) {
+
+    .container {
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .name {
+        font-size: 28px;
+    }
+
+    .profile-img {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* SOCIAL BOX FIX */
+    .social-box {
+        flex-wrap: wrap;
+        white-space: normal;
+        justify-content: center;
+        gap: 10px 22px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    /* PUBLICATION ENTRY FIX */
+    .pub-entry {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .pub-img {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+    }
+
+    .pub-title {
+        font-size: 18px;
+    }
+}
 
     </style>
 </head>
