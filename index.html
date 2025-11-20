@@ -1,86 +1,274 @@
 <!DOCTYPE HTML>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<head>
+    <meta charset="UTF-8">
     <title>Gurutva Patle</title>
 
-    <meta name="author" content="Jon Barron">
+    <!-- Modern Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
-  </head>
+    <style>
 
-  <body>
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="padding:0px">
-              <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align: center;">
-                  Gurutva Patle
-                </p>
-                <p>
-    I am a <b>PhD researcher at IISc Bangalore</b> in Computer Vision and Graphics.<br>
-    My current research focuses on <b>sparse input novel view synthesis</b> using <b>3D Gaussian Splatting</b>.
-  </p>
+        /* ============================================================
+           GLOBAL STYLES
+        ============================================================ */
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.7;
+            background: linear-gradient(135deg, #ece9ff, #f7f5ff, #eef1ff);
+            background-size: 400% 400%;
+            animation: bg-anim 18s ease infinite;
+            color: #222;
+            margin: 0;
+            padding: 0;
+        }
 
-  <h2>Research Interests</h2>
-  <ul>
-    <li>Computer Vision</li>
-    <li>Neural Rendering</li>
-    <li>3D Gaussian Splatting</li>
-    <li>Deep Learning for Graphics</li>
-  </ul>
+        @keyframes bg-anim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
- <p>
-  🐙 <a href="https://github.com/gurutvapatle">GitHub</a><br>
-  🔗 <a href="https://scholar.google.com/">Google Scholar</a><br>
-  💼 <a href="https://www.linkedin.com/in/gurutvapatle">LinkedIn</a><br>
-  📚 <a href="./publications.html">My Publications</a>
+        a {
+            color: #4a3aff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 920px;
+            margin: auto;
+            background: #ffffffee;
+            backdrop-filter: blur(6px);
+            padding: 40px 40px 60px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            margin-top: 45px;
+            border-radius: 18px;
+            border: 1px solid #dcd5ff;
+        }
+
+        .name {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+            color: #2f1b9a;
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: auto;
+            margin-top: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 22px;
+            border-left: 6px solid #4a3aff;
+            padding-left: 12px;
+            margin-top: 40px;
+            color: #2a2080;
+        }
+
+        /* ============================================================
+           SOCIAL LINKS
+        ============================================================ */
+         .social-box {
+        white-space: nowrap;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        font-size: 16px;
+    }
+
+    .social-box a {
+        text-decoration: none;
+        color: #3b82f6; /* your link color */
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+        /* ============================================================
+           PUBLICATION CARD
+        ============================================================ */
+        .pub-entry {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            background: #f7f5ff;
+            padding: 22px;
+            border-radius: 16px;
+            border: 1px solid #e1ddff;
+            box-shadow: 0 6px 18px rgba(115, 85, 255, 0.08);
+            transition: 0.25s ease;
+        }
+
+        .pub-entry:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 26px rgba(115, 85, 255, 0.12);
+        }
+
+        .pub-img {
+            width: 370px;
+            border-radius: 10px;
+            border: 1px solid #d4ceff;
+            object-fit: cover;
+        }
+
+        .pub-title {
+            font-size: 19px;
+            font-weight: 700;
+            margin: 0;
+            color: #2b217d;
+        }
+
+        .pub-authors a {
+            color: #555;
+            font-size: 15px;
+        }
+
+        .pub-venue-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #ece9ff, #dcd6ff);
+            border: 1px solid #bdb5ff;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #3d2fbf;
+            box-shadow: 0 2px 6px rgba(120, 100, 255, 0.18);
+        }
+
+        .pub-btn {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 7px 18px;
+            border: 1px solid #4a3aff;
+            border-radius: 6px;
+            font-size: 13px;
+            letter-spacing: 0.4px;
+            color: #4a3aff;
+            transition: 0.2s;
+        }
+
+        .pub-btn:hover {
+            background: #4a3aff;
+            color: white;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <p class="name">Gurutva Patle</p>
+
+        <img src="images/gurutva_profile.jpeg" class="profile-img" alt="Gurutva Patle">
+
+        <p style="margin-top:20px;">
+            I am a PhD researcher at the
+            <a href="https://iisc.ac.in" target="_blank">Indian Institute of Science (IISc) Bangalore</a>,
+            working under the supervision of
+            <a href="https://ece.iisc.ac.in/~rajivs/" target="_blank">Prof. Rajiv Soundararajan</a>.
+        </p>
+
+        <p>
+            My research focuses on computer vision, neural rendering, and 3D graphics,
+            with a particular emphasis on sparse-input novel view synthesis using
+            3D Gaussian Splatting (3DGS) and neural field representations.
+        </p>
+
+        <p>
+            I work on problems involving 3D understanding, neural reconstruction,
+            and realistic rendering.
+            My projects aim to improve the efficiency, sparse-input performance,
+            and real-world deployment of neural radiance fields and 3D Gaussian Splatting
+            for multi-camera capture systems.
+        </p>
+
+        <!-- Social Links -->
+<p class="social-box" style="white-space: nowrap;">
+    <i class="fas fa-globe"></i>
+    <a href="https://github.com/gurutvapatle">GitHub</a>
+    &nbsp;&nbsp;
+    <i class="fas fa-graduation-cap"></i>
+    <a href="https://scholar.google.com/citations?user=sf_tZ6oAAAAJ&hl=en">Google Scholar</a>
+    &nbsp;&nbsp;
+    <i class="fab fa-linkedin"></i>
+    <a href="https://www.linkedin.com/in/gurutvapatle">LinkedIn</a>
 </p>
-<!--                <p style="text-align:center">-->
-<!--                  <a href="mailto:jonbarron@gmail.com">Email</a> &nbsp;/&nbsp;-->
-<!--                  <a href="data/JonBarron-CV.pdf">CV</a> &nbsp;/&nbsp;-->
-<!--                  <a href="data/JonBarron-bio.txt">Bio</a> &nbsp;/&nbsp;-->
-<!--                  <a href="https://scholar.google.com/citations?hl=en&user=jktWnL8AAAAJ">Scholar</a> &nbsp;/&nbsp;-->
-<!--                  <a href="https://twitter.com/jon_barron">Twitter</a> &nbsp;/&nbsp;-->
-<!--                  <a href="https://github.com/jonbarron/">Github</a>-->
-<!--                </p>-->
-              </td>
-              <td style="padding:2.5%;width:37%;max-width:37%">
-                <a href="images/JonBarron.jpg"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/gurutva_profile.jpeg" class="hoverZoomLink"></a>
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-              <td style="padding:16px;width:100%;vertical-align:middle">
-                <h2>Research</h2>
-                <p>
-                  I'm interested in computer vision, deep learning, and image processing. Most of my research is about inferring the physical world from images, usually with radiance fields.
+        <h2>Research Interests</h2>
+        <ul>
+            <li>Computer Vision</li>
+            <li>Neural Rendering & Radiance Fields</li>
+            <li>3D Gaussian Splatting</li>
+            <li>Novel View Synthesis</li>
+            <li>Surface Reconstruction</li>
+        </ul>
+
+
+
+
+        <!-- PUBLICATIONS -->
+        <h2>Selected Publications</h2>
+
+        <div class="pub-entry">
+
+            <img src="./publications/2025/static/images/res/Teasers/MAIN_TEASER_3DGS_ADGS.png"
+                 class="pub-img"
+                 alt="AD-GS Thumbnail">
+
+            <div>
+                <p class="pub-title">
+                    <a href="./publications/2025/ADGS.html">
+                        AD-GS: Alternating Densification for Sparse-Input 3D Gaussian Splatting
+                    </a>
                 </p>
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
+                <p class="pub-authors">
+                    <a href="https://gurutvapatle.github.io/">Gurutva Patle</a>,
+                    <a href="https://nilzilla03.github.io/">Nilay Girgaonkar</a>,
+                    <a href="https://nagabhushansn95.github.io/">Nagabhushan Somraj</a>,
+                    <a href="https://ece.iisc.ac.in/~rajivs/">Rajiv Soundararajan</a>
+                </p>
 
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-              <td style="padding:0px">
-                <br>
-<!--                <p style="text-align:right;font-size:small;">-->
-<!--                  Feel free to steal this website's <a href="https://github.com/jonbarron/jonbarron_website">source code</a>. <strong>Do not</strong> scrape the HTML from this page itself, as it includes analytics tags that you do not want on your own website &mdash; use the github code instead. Also, consider using <a href="https://leonidk.com/">Leonid Keselman</a>'s <a href="https://github.com/leonidk/new_website">Jekyll fork</a> of this page.-->
-<!--                </p>-->
-              </td>
-            </tr>
-          </tbody></table>
-        </td>
-      </tr>
-    </table>
-  </body>
+                <div class="pub-venue-badge">
+                    SIGGRAPH Asia 2025 — Hong Kong
+                </div>
+
+                <p>
+                    <a class="pub-btn" href="./publications/2025/ADGS.html">PROJECT</a>
+                    <a class="pub-btn" href="https://arxiv.org/abs/2509.11003">PAPER</a>
+                    <a class="pub-btn" href="https://github.com/gurutvapatle/AD-GS">CODE</a>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
 </html>
