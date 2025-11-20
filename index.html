@@ -92,20 +92,26 @@
            SOCIAL LINKS
         ============================================================ */
          .social-box {
-        white-space: nowrap;
-        display: flex;
-        gap: 16px;
-        align-items: center;
-        font-size: 16px;
-    }
+    display: flex;
+    flex-wrap: wrap;        /* allow wrapping on mobile */
+    gap: 14px 22px;         /* row-gap column-gap */
+    justify-content: center;
+    font-size: 16px;
+    margin-top: 18px;
+}
 
-    .social-box a {
-        text-decoration: none;
-        color: #3b82f6; /* your link color */
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-    }
+.social-box a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.social-box a:hover {
+    text-decoration: underline;
+}
 
         /* ============================================================
            PUBLICATION CARD
@@ -176,6 +182,8 @@
             color: white;
             text-decoration: none;
         }
+
+
 
         /* ============================================================
    MOBILE RESPONSIVE FIXES
@@ -258,16 +266,20 @@
         </p>
 
         <!-- Social Links -->
-<p class="social-box" style="white-space: nowrap;">
-    <i class="fas fa-globe"></i>
-    <a href="https://github.com/gurutvapatle">GitHub</a>
-    &nbsp;&nbsp;
-    <i class="fas fa-graduation-cap"></i>
-    <a href="https://scholar.google.com/citations?user=sf_tZ6oAAAAJ&hl=en">Google Scholar</a>
-    &nbsp;&nbsp;
-    <i class="fab fa-linkedin"></i>
-    <a href="https://www.linkedin.com/in/gurutvapatle">LinkedIn</a>
-</p>
+<div class="social-box">
+    <a href="https://github.com/gurutvapatle">
+        <i class="fas fa-globe"></i> GitHub
+    </a>
+
+    <a href="https://scholar.google.com/citations?user=sf_tZ6oAAAAJ&hl=en">
+        <i class="fas fa-graduation-cap"></i> Google Scholar
+    </a>
+
+    <a href="https://www.linkedin.com/in/gurutvapatle">
+        <i class="fab fa-linkedin"></i> LinkedIn
+    </a>
+</div>
+
         <h2>Research Interests</h2>
         <ul>
             <li>Computer Vision</li>
