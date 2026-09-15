@@ -1,0 +1,56 @@
+/* Dark mode-first theme: dark background, light text, bright
+   accent, glowing soft-shadow cards. Good contrast for video content. */
+:root {
+  --color-bg: #0e0f1a;
+  --color-bg-alt: #14162399;
+  --color-text: #c7c9d9;
+  --color-text-soft: #8d90a8;
+  --color-heading: #f5f6fb;
+  --color-accent: #5ee6d0;
+  --color-card-bg: #171929;
+  --color-card-border: #2a2d42;
+  --shadow-color: rgba(94, 230, 208, 0.12);
+
+  --nav-bg: rgba(14, 15, 26, 0.85);
+  --nav-text: #f5f6fb;
+
+  --hero-bg: radial-gradient(ellipse at top, #1c2038 0%, #0e0f1a 60%);
+
+  --accent-badge-bg: #16382f;
+  --accent-badge-text: #5ee6d0;
+
+  --button-bg: #1c2038;
+  --button-text: #f5f6fb;
+  --button-border: #33375a;
+  --button-hover-bg: #5ee6d0;
+
+  --code-bg: #0b0c14;
+  --code-text: #9be8db;
+
+  --footer-bg: #0b0c14;
+  --footer-text: #6d7089;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans', sans-serif;
+}
+
+.hero .link-block .button:hover {
+  color: #0e0f1a !important;
+}
+
+.publication-title,
+.title.is-3,
+.title.is-4 {
+  font-family: 'Google Sans', 'Inter', sans-serif;
+}
+
+/* subtle glow accents typical of dark UIs */
+.eyebrow {
+  text-shadow: 0 0 12px rgba(94, 230, 208, 0.35);
+}
+
+section.hero .publication-authors sup,
+section.hero .publication-authors span {
+  color: var(--color-text-soft);
+}

@@ -1,0 +1,5 @@
+# Local backups of pre-compression media (kept locally, not pushed to git)
+publications/2025/static/videos_orig_backup/
+publications/2025/static/images/images_orig_backup/
+publications/2025/static/interpolation/stacked_png_backup/
+publications/2025/static/interpolation/stacked_webp_q80_backup/

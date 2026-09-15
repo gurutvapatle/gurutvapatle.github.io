@@ -16,3 +16,20 @@ p {
     text-align: justify;
     text-justify: inter-word;
 }
+
+@media (max-width: 600px) {
+    .page-title {
+        font-size: 160%;
+        padding: 0 10px;
+    }
+
+    .page-subtitle {
+        font-size: 120%;
+    }
+
+    /* Justified text looks ragged on narrow screens (few words per
+       line create uneven gaps); left-align reads better on mobile. */
+    p {
+        text-align: left;
+    }
+}

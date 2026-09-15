@@ -1,0 +1,407 @@
+/* ============================================================
+   Shared structural layer for the redesigned ADGS page.
+   All colors/fonts/shadows come from CSS variables defined per
+   theme file (theme-academic.css / theme-bold.css / theme-dark.css),
+   loaded after this file. This file only handles layout/structure
+   so the three themes stay visually consistent in spacing/rhythm.
+   ============================================================ */
+
+:root {
+  --radius: 14px;
+  --gap: 1.5rem;
+  --transition: 0.2s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Match the width used on the AD-GS gallery carousel page so both
+   pages read at the same scale. */
+@media screen and (min-width: 1024px) {
+  .container.is-max-desktop {
+    max-width: 1320px !important;
+  }
+}
+
+/* Bulma's .hero uses align-items on its flex container, which makes
+   the .container child shrink-to-fit its content instead of
+   stretching to max-width. Forcing width: 100% restores the normal
+   "fill up to max-width" sizing (this mainly affected the teaser
+   section, which has no other content dictating a wider intrinsic
+   size for the flex item). */
+.hero .container.is-max-desktop {
+  width: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ---------- Top nav ---------- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1.5rem;
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-card-border);
+}
+
+.site-nav-brand {
+  color: var(--nav-text) !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.85;
+  transition: opacity var(--transition);
+}
+
+.site-nav-brand:hover {
+  opacity: 1;
+}
+
+/* ---------- Hero ---------- */
+section.hero {
+  background: var(--hero-bg);
+}
+
+section.hero .publication-title {
+  color: var(--color-heading);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+section.hero .publication-authors a {
+  color: var(--color-accent) !important;
+}
+
+.conference-info {
+  background: var(--accent-badge-bg) !important;
+  color: var(--accent-badge-text) !important;
+  box-shadow: none !important;
+}
+
+/* Hero action buttons */
+.hero .link-block .button {
+  background: var(--button-bg) !important;
+  color: var(--button-text) !important;
+  border: 1px solid var(--button-border) !important;
+  font-weight: 600;
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+.hero .link-block .button:hover {
+  background: var(--button-hover-bg) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--shadow-color);
+}
+
+.teaser h2.subtitle {
+  color: var(--color-text-soft);
+  font-weight: 500;
+  margin-top: 1.5rem;
+}
+
+/* Callout pointing to the full comparison gallery, placed early so
+   visitors skimming the top of the page don't miss it (previously
+   the only links were an ambiguously-labeled hero button and a note
+   buried after all the comparison videos). */
+.gallery-callout {
+  text-align: center;
+  margin-top: 1.25rem;
+}
+
+.gallery-callout a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-card-border);
+  color: var(--color-accent) !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.gallery-callout a:hover {
+  background: var(--color-accent);
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--shadow-color);
+}
+
+.gallery-callout-arrow {
+  transition: transform var(--transition);
+}
+
+.gallery-callout a:hover .gallery-callout-arrow {
+  transform: translateX(3px);
+}
+
+.teaser-videos video {
+  box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+/* Click-anywhere-to-pause wrapper, shared by teaser and comparison
+   videos (matches the gallery carousel's video interaction). */
+.video-click-wrap {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* These source clips have a burned-in black label strip along the
+   bottom edge (baked into the video pixels, not something we can
+   trim losslessly without re-encoding). We crop it visually here:
+   the wrapper is given the cropped aspect ratio, and the video fills
+   it with object-fit: cover anchored to the top, pushing the bottom
+   strip out of view. Ratio is per-video since each clip's strip is a
+   different fraction of its frame height. */
+.video-click-wrap video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.video-click-wrap:has(#teaser1) { aspect-ratio: 5.4545; }
+.video-click-wrap:has(#teaser2) { aspect-ratio: 4.588; }
+.video-click-wrap:has(#teaser3) { aspect-ratio: 4.072; }
+.video-click-wrap:has(#dollyzoom) { aspect-ratio: 4.072; }
+.video-click-wrap:has(#dollyzoom2) { aspect-ratio: 4.072; }
+.video-click-wrap:has(#dollyzoom3) { aspect-ratio: 4.072; }
+.video-click-wrap:has(#dollyzoom4) { aspect-ratio: 4.588; }
+
+/* Method badge: the "3DGS vs AD-GS" style comparison headings
+   become colored pills instead of plain text, matching the
+   gallery carousel's caption badge. */
+h3.title.is-4.method-badge {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #fff !important;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+/* Scene/views metadata line under comparison videos, matching the
+   gallery carousel's caption style. */
+.video-meta {
+  margin-top: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.video-meta-scene {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--color-heading);
+}
+
+.video-meta-views {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--color-card-border);
+  color: var(--color-text-soft);
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.video-meta-badge {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: 'Google Sans', 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  word-break: keep-all;
+}
+
+/* Teaser captions: badge + scene + views together in one card,
+   read as a single line on wider screens. */
+.teaser-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-meta-inline {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-card-border);
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+@media (max-width: 640px) {
+  .video-meta-inline {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+/* ---------- Section rhythm ---------- */
+section.section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+section.section:nth-of-type(even) {
+  background: var(--color-bg-alt);
+}
+
+/* Eyebrow kicker label above each major section heading */
+.eyebrow {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.title.is-3 {
+  color: var(--color-heading) !important;
+  font-weight: 700 !important;
+}
+
+.title.is-4 {
+  color: var(--color-heading) !important;
+  font-weight: 600 !important;
+}
+
+.content p,
+.content li {
+  color: var(--color-text) !important;
+}
+
+/* ---------- Card treatment for figures / videos ---------- */
+.content:has(> video),
+.content:has(> img) {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: 0 4px 18px var(--shadow-color);
+}
+
+.content:has(> video) video,
+.content:has(> img) img {
+  border-radius: calc(var(--radius) - 6px);
+}
+
+/* Comparison rows (3DGS vs AD-GS, etc.) */
+.columns.is-centered > .column > .content:has(video) {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 4px 18px var(--shadow-color);
+}
+
+.columns.is-centered > .column > .content:has(video) video {
+  border-radius: calc(var(--radius) - 6px);
+  margin-top: 0.75rem;
+}
+
+/* Interpolation panel */
+.interpolation-panel {
+  background: var(--color-card-bg) !important;
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: 0 4px 18px var(--shadow-color);
+}
+
+/* Minor housekeeping notes (links to more results, funding
+   acknowledgement) don't deserve full section-header treatment;
+   keep them quiet and compact instead of shouting like Abstract/
+   Observations do. */
+.meta-note {
+  text-align: center;
+  color: var(--color-text-soft);
+  font-size: 0.95rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--color-card-border);
+}
+
+.meta-note p {
+  color: var(--color-text-soft) !important;
+  margin-bottom: 0.4rem;
+}
+
+.meta-note a {
+  color: var(--color-accent) !important;
+}
+
+/* Citation gets a real card: heading + intro + code block
+   together, instead of the code block floating in its own box
+   below a loose heading. */
+.citation-section {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: 0 4px 18px var(--shadow-color);
+  margin-top: 1rem;
+}
+
+/* Citation code block */
+pre {
+  background: var(--code-bg) !important;
+  color: var(--code-text) !important;
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem !important;
+}
+
+.citation-section pre {
+  box-shadow: none;
+  margin-top: 1rem;
+}
+
+pre code {
+  color: inherit !important;
+  background: transparent !important;
+}
+
+/* ---------- Footer ---------- */
+footer.footer {
+  background: var(--footer-bg) !important;
+  color: var(--footer-text);
+  border-top: 1px solid var(--color-card-border);
+}
+
+footer.footer a {
+  color: var(--color-accent) !important;
+}
+
+footer .icon-link {
+  color: var(--footer-text) !important;
+}

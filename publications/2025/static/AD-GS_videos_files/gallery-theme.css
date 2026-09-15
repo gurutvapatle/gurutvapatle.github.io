@@ -1,0 +1,123 @@
+/* ============================================================
+   Academic theme for the AD-GS video gallery page, matching the
+   redesigned main project page (ADGS.html). Same palette/typography/
+   card language, layered on top of the existing w3.css template.
+   ============================================================ */
+
+:root {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f7f8fb;
+  --color-text: #3a3f4b;
+  --color-text-soft: #6b7280;
+  --color-heading: #1f2430;
+  --color-accent: #3454d1;
+  --color-card-bg: #ffffff;
+  --color-card-border: #e6e8ef;
+  --shadow-color: rgba(31, 41, 55, 0.08);
+  --radius: 14px;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ---------- Title panel (hero equivalent) ---------- */
+#title-panel {
+  background: linear-gradient(180deg, #f5f7fd 0%, #ffffff 100%) !important;
+  padding-top: 4rem !important;
+  padding-bottom: 3rem !important;
+}
+
+.page-title {
+  font-family: 'Google Sans', 'Inter', sans-serif;
+  color: var(--color-heading);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.page-subtitle {
+  display: inline-block;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.9rem !important;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: #eef1fc;
+  color: var(--color-accent);
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+}
+
+#title-panel {
+  text-align: center;
+}
+
+/* ---------- Page content container ---------- */
+.page-content {
+  max-width: 1000px;
+  width: 92%;
+  margin: 3rem auto 0;
+}
+
+/* ---------- Section headers ---------- */
+h2, h3 {
+  color: var(--color-heading) !important;
+}
+
+#abstract h2,
+#video-comparisons h2 {
+  color: var(--color-accent) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 700;
+  font-family: 'Google Sans', 'Inter', sans-serif;
+}
+
+#video-comparisons > h4 {
+  color: var(--color-text-soft) !important;
+  font-weight: 400;
+  font-size: 1rem;
+  margin-top: -0.5rem;
+  margin-bottom: 2rem;
+}
+
+#abstract p {
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+/* ---------- Video cards ---------- */
+#video-comparisons-floaters figure.video-comparisons-llff-wrap,
+#video-comparisons-floaters > figure {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 4px 18px var(--shadow-color);
+}
+
+.video-comparisons-llff {
+  border-radius: calc(var(--radius) - 6px);
+}
+
+figcaption.caption {
+  color: var(--color-text-soft);
+  font-size: 0.9rem;
+  margin-top: 0.85rem;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 600px) {
+  .page-content {
+    width: 94%;
+    margin-top: 2rem;
+  }
+
+  #video-comparisons-floaters > figure {
+    padding: 0.85rem;
+  }
+}

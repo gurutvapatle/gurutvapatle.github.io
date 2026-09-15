@@ -1,5 +1,14 @@
 body {
   font-family: 'Noto Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Bulma's flexbox columns default to min-width: auto, so a long
+   unbroken heading can force the flex item (and the whole row) wider
+   than the viewport instead of wrapping within it. */
+.columns,
+.column {
+  min-width: 0;
 }
 
 
@@ -15,9 +24,60 @@ body {
 }
 
 
+/* Responsive video sizing: replaced elements (video) don't shrink to
+   fit their container by default, which causes horizontal overflow
+   on narrow/mobile viewports unless explicitly constrained. */
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Each teaser video is itself a wide GT/Method/AD-GS side-by-side
+   mosaic (~4:1 aspect ratio), so they read best stacked full-width
+   one per row rather than squeezed 3-across, which would shrink each
+   to an unreadable sliver. */
+.teaser-videos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 1rem;
+}
+
+.teaser-videos video {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
 .teaser .hero-body {
   padding-top: 0;
   padding-bottom: 3rem;
+}
+
+/* BibTeX/code blocks use long unbroken lines (URLs, DOIs); without
+   this they force the whole page to scroll horizontally on mobile
+   instead of just scrolling within the block. */
+pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.publication-title {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+@media (max-width: 600px) {
+  .publication-title {
+    font-size: 1.6rem !important;
+  }
+
+  /* Justified text looks ragged on narrow screens (few words per
+     line create uneven gaps); left-align reads better on mobile. */
+  .has-text-justified {
+    text-align: left !important;
+  }
 }
 
 .teaser {

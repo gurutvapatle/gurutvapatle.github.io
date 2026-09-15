@@ -1,0 +1,53 @@
+/* Clean modern academic theme: minimal, generous whitespace,
+   muted indigo accent, soft shadows, understated. */
+:root {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f7f8fb;
+  --color-text: #3a3f4b;
+  --color-text-soft: #6b7280;
+  --color-heading: #1f2430;
+  --color-accent: #3454d1;
+  --color-card-bg: #ffffff;
+  --color-card-border: #e6e8ef;
+  --shadow-color: rgba(31, 41, 55, 0.08);
+
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --nav-text: #1f2430;
+
+  --hero-bg: linear-gradient(180deg, #f5f7fd 0%, #ffffff 100%);
+
+  --accent-badge-bg: #eef1fc;
+  --accent-badge-text: #3454d1;
+
+  --button-bg: #1f2430;
+  --button-text: #ffffff;
+  --button-border: #1f2430;
+  --button-hover-bg: #3454d1;
+
+  --code-bg: #f7f8fb;
+  --code-text: #2d3340;
+
+  --footer-bg: #f7f8fb;
+  --footer-text: #6b7280;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans', sans-serif;
+}
+
+.publication-title,
+.title.is-3,
+.title.is-4 {
+  font-family: 'Google Sans', 'Inter', sans-serif;
+}
+
+/* Section headers (Abstract, Method, Visuals, Observations,
+   Comparison with other methods, Citation) take on the eyebrow
+   label's typographic identity directly, instead of a separate
+   small kicker line above them. Size is untouched. */
+.title.is-3 {
+  color: var(--color-accent) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 700 !important;
+}

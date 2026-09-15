@@ -1,0 +1,193 @@
+/* Widen the page and video rows specifically for the carousel
+   layout — a single large video per row reads better wide than
+   the narrower column used by the plain figure-list gallery. */
+.page-content {
+  max-width: 1320px;
+}
+
+.carousel-row {
+  background: var(--color-card-bg, #fff);
+  border: 1px solid var(--color-card-border, #e6e8ef);
+  border-radius: var(--radius, 14px);
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 18px var(--shadow-color, rgba(31, 41, 55, 0.08));
+}
+
+.dataset-title {
+  font-family: 'Google Sans', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin: 0 0 1.1rem;
+  color: var(--color-accent, #3454d1);
+}
+
+.video-wrap {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: calc(var(--radius, 14px) - 6px);
+  overflow: hidden;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.18);
+  background: #000;
+}
+
+.video-wrap video {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.15s;
+  z-index: 5;
+}
+
+.carousel-arrow:hover {
+  background: rgba(0, 0, 0, 0.75);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow-left { left: 12px; }
+.carousel-arrow-right { right: 12px; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: #d0d7e2;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.carousel-dot:hover {
+  background: #a9b8d6;
+}
+
+.carousel-dot.is-active {
+  background: var(--color-accent, #3454d1);
+  transform: scale(1.25);
+}
+
+.video-caption {
+  position: relative;
+  margin-top: 1.1rem;
+  text-align: center;
+  width: 100%;
+  background: var(--color-bg-alt, #f7f8fb);
+  border: 1px solid var(--color-card-border, #e6e8ef);
+  border-radius: 12px;
+  padding: 1.1rem 1.75rem;
+  box-sizing: border-box;
+}
+
+.caption-badge {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  background: var(--color-accent, #3454d1);
+  color: #fff;
+  font-family: 'Google Sans', 'Inter', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  word-break: keep-all;
+}
+
+.caption-change {
+  margin-top: 0.85rem;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.caption-scene {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--color-heading, #1f2430);
+}
+
+.caption-views-badge {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--color-card-border, #e6e8ef);
+  color: var(--color-text-soft, #6b7280);
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.caption-sep {
+  margin: 0 0.5em;
+  color: var(--color-text-soft, #6b7280);
+}
+
+.caption-views {
+  color: var(--color-text-soft, #6b7280);
+  font-weight: 400;
+}
+
+@media (max-width: 600px) {
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+  }
+
+  .dataset-title {
+    font-size: 1.15rem;
+  }
+
+  .video-caption {
+    padding: 0.9rem 1.1rem;
+  }
+
+  .caption-badge {
+    font-size: 0.9rem;
+    padding: 0.35rem 0.9rem;
+  }
+
+  .caption-change {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .caption-scene {
+    font-size: 0.9rem;
+  }
+
+  .caption-views-badge {
+    font-size: 0.85rem;
+  }
+}

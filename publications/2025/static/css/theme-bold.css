@@ -1,0 +1,55 @@
+/* Bold contemporary theme: stronger color accents, larger type
+   contrasts, more visual energy while staying professional. */
+:root {
+  --color-bg: #ffffff;
+  --color-bg-alt: #fbf5ff;
+  --color-text: #362f47;
+  --color-text-soft: #7a6f94;
+  --color-heading: #1c1030;
+  --color-accent: #8b2fe0;
+  --color-card-bg: #ffffff;
+  --color-card-border: #ead9fb;
+  --shadow-color: rgba(139, 47, 224, 0.14);
+
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --nav-text: #1c1030;
+
+  --hero-bg: linear-gradient(135deg, #f3e8ff 0%, #ffe9f5 50%, #fff6e8 100%);
+
+  --accent-badge-bg: linear-gradient(135deg, #8b2fe0, #e0308f);
+  --accent-badge-text: #ffffff;
+
+  --button-bg: linear-gradient(135deg, #8b2fe0, #e0308f);
+  --button-text: #ffffff;
+  --button-border: transparent;
+  --button-hover-bg: linear-gradient(135deg, #7423c4, #c6237a);
+
+  --code-bg: #1c1030;
+  --code-text: #f3e8ff;
+
+  --footer-bg: #1c1030;
+  --footer-text: #cbb8e8;
+}
+
+body {
+  font-family: 'Poppins', 'Google Sans', sans-serif;
+}
+
+.publication-title {
+  font-family: 'Google Sans', sans-serif;
+  background: linear-gradient(135deg, #8b2fe0, #e0308f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.eyebrow {
+  background: linear-gradient(135deg, #8b2fe0, #e0308f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero .link-block .button {
+  border-radius: 999px !important;
+}
