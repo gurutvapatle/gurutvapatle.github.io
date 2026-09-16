@@ -177,6 +177,22 @@ section.hero .publication-authors a {
   object-position: top;
 }
 
+/* Labels under each video echoing its 3-panel layout (Ground Truth /
+   Method / AD-GS), each centered within its own third of the width. */
+.panel-labels {
+  display: flex;
+  margin-top: 0.6rem;
+}
+
+.panel-labels span {
+  flex: 1 1 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  letter-spacing: 0.02em;
+}
+
 .video-click-wrap:has(#teaser1) { aspect-ratio: 5.4545; }
 .video-click-wrap:has(#teaser2) { aspect-ratio: 4.588; }
 .video-click-wrap:has(#teaser3) { aspect-ratio: 4.072; }
@@ -346,7 +362,7 @@ section.section:nth-of-type(even) {
 .meta-note {
   text-align: center;
   color: var(--color-text-soft);
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   padding: 1.5rem 0;
   border-top: 1px solid var(--color-card-border);
 }

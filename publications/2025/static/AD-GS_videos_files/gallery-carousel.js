@@ -45,6 +45,12 @@
 
     row.appendChild(videoWrap);
 
+    var panelLabels = el('div', 'panel-labels');
+    panelLabels.appendChild(el('span', null, 'Ground Truth'));
+    panelLabels.appendChild(el('span', 'panel-label-method'));
+    panelLabels.appendChild(el('span', null, 'AD-GS'));
+    row.appendChild(panelLabels);
+
     var caption = el('div', 'video-caption');
     row.appendChild(caption);
 
@@ -70,6 +76,11 @@
       index = ((i % items.length) + items.length) % items.length;
       var item = items[index];
       video.src = 'videos/' + item.src;
+      if (item.aspectRatio) {
+        videoWrap.style.aspectRatio = item.aspectRatio;
+      }
+      panelLabels.querySelector('.panel-label-method').textContent =
+        item.method.replace(/\s*vs\s*AD-GS\s*$/i, '');
       var viewsNum = (item.views.match(/\d+/) || [item.views])[0];
       caption.innerHTML =
         "<span class='caption-badge'>" + item.method + "</span>" +

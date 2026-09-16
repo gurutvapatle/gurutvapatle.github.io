@@ -29,6 +29,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   root.appendChild(videoWrap);
 
+  var panelLabels = el('div', 'panel-labels');
+  panelLabels.appendChild(el('span', null, 'Ground Truth'));
+  panelLabels.appendChild(el('span', 'panel-label-method'));
+  panelLabels.appendChild(el('span', null, 'AD-GS'));
+  root.appendChild(panelLabels);
+
   var caption = el('div', 'video-caption');
   root.appendChild(caption);
 
@@ -55,8 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (item.aspectRatio) {
       videoWrap.style.aspectRatio = item.aspectRatio;
     }
+    panelLabels.querySelector('.panel-label-method').textContent =
+      item.method.replace(/\s*vs\s*AD-GS\s*$/i, '');
     caption.innerHTML =
-      "<span class='caption-badge'>" + item.method + "</span>" +
       "<div class='caption-change'>" +
         "<span class='caption-scene'>Scene: " + item.scene + "</span>" +
         "<span class='caption-views-badge'>" + item.views + " views</span>" +
