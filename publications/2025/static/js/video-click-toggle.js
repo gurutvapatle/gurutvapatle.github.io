@@ -21,4 +21,25 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  // Videos below the fold (preload="none", no autoplay attribute)
+  // only start fetching/playing once scrolled into view, so they
+  // don't compete for bandwidth with the hero teaser video on load.
+  var lazyVideos = document.querySelectorAll('.video-click-wrap video[preload="none"]');
+  if (lazyVideos.length && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var v = entry.target;
+        if (entry.isIntersecting) {
+          v.play().catch(function () {});
+        } else {
+          v.pause();
+        }
+      });
+    }, { rootMargin: '200px 0px', threshold: 0.1 });
+
+    lazyVideos.forEach(function (v) {
+      observer.observe(v);
+    });
+  }
 });
